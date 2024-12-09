@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# fuzzy search and preview files in ~/Notes/
+# and optionally edit them
+NOTE=$(fzf --walker-root ${HOME}/Notes --preview="bat --color=always {}")
+NOTE="${NOTE// /_}" # ensure spaces are underscores
+if [[ -f ${NOTE} ]]; then
+  nvim ${NOTE}
+fi

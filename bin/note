@@ -28,7 +28,9 @@ tags: []
 
 "
 
-# Construct file path
+# Construct file path,
+# replacing spaces with underscores
+TITLE="${TITLE// /_}"
 FILE="$NOTEBOOK/${TIMESTAMP}-${TITLE}.md"
 
 # enter neovim, paste template and start in insert mode

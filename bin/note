@@ -7,7 +7,7 @@ NOTEBOOK="${HOME}/Notes"
 read -p "Heading: " TITLE
 
 # Generate timestamp
-TIMESTAMP=$(date +"%Y%m%d%H%M")
+TIMESTAMP=$(date +"%y%m%d%H%M")
 TIME=$(date +"%Y-%m-%d")
 
 # Open neovim with the constructed file and insert this template:
@@ -21,7 +21,7 @@ TIME=$(date +"%Y-%m-%d")
 TEMPLATE="---
 title: \"$TITLE\"
 date: $TIME
-tags: 
+tags: []
 ---
 
 # $TITLE

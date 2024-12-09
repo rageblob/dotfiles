@@ -7,7 +7,7 @@ NOTEBOOK="${HOME}/Notes"
 read -p "TODO: " TITLE
 
 # Generate timestamp
-TIMESTAMP=$(date +"%Y%m%d%H%M")
+TIMESTAMP=$(date +"%y%m%d%H%M")
 DATE=$(date +"%Y-%m-%d")
 
 # Open neovim with the constructed file and insert this template:
@@ -21,7 +21,7 @@ DATE=$(date +"%Y-%m-%d")
 TEMPLATE="---
 title: \"${TITLE}\"
 date: ${DATE}
-tags: 
+tags: []
 ---
 
 # ${TITLE}
@@ -29,7 +29,7 @@ tags:
 "
 
 # Bootstrap file path
-FILE="${NOTEBOOK}/TODO-${TIMESTAMP}.md"
+FILE="${NOTEBOOK}/TODO-${TIMESTAMP}-${TITLE}.md"
 
 # enter neovim, insert template and start in insert mode
-nvim -c "i|${TEMPLATE}" -c "startinsert" -- "${FILE}"
+nvim -c "i|${TEMPLATE}" -c "startinsert" -c "set filetype=markdown" -- "${FILE}"

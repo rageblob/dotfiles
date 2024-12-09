@@ -1,0 +1,11 @@
+# ZSH Tab autocompletion & syntax-highlighting
+bindkey '^I' expand-or-complete
+eval "$(direnv hook zsh)"
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# AWS CLI autocompletion
+complete -C aws_completer aws
+
+# nb autocompletion
+fpath=(~/.config/zsh/completion $fpath)
+autoload -Uz compinit && compinit -i

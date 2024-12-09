@@ -1,0 +1,126 @@
+# Quality of life
+alias l='ls -lh'
+alias la='ls -lAh'
+alias rf='rm -rf'
+alias fman='compgen -c | fzf | xargs man'
+alias tm='tmux'
+alias ta='tmux attach'
+alias tmd='tmux detach'
+alias td='tmux detach'
+alias tms='tmux ls'
+alias tmk='tmux kill-session -t'
+alias e='exit'
+alias q='exit'
+
+# Vim & NeoVim
+alias v='vim'
+alias nv='nvim'
+
+# Python
+alias p='python3'
+alias py='python3'
+alias pe='python3 -m venv ./'
+alias pip='pip3'
+alias p3='pip3'
+alias pa='source ./bin/activate'
+alias ac='source ./bin/activate'
+alias de='deactivate'
+
+# Git
+alias g='git'
+alias lg='lazygit'
+alias gi='git init'
+alias gc='git checkout'
+alias gcm='git checkout main'
+alias ga='git add'
+alias gl='git pull'
+alias gp='git push'
+alias gpf='git push --force-with-lease'
+alias gb='git branch'
+alias gba='git branch --all'
+alias gd='git diff'
+alias gdp='git diff HEAD^'
+alias gf='git fetch origin'
+alias gg='git log'
+alias ggg='git log --graph'
+alias ggo='git log --oneline'
+alias gca='git commit --amend'
+alias glr='git pull --rebase'
+alias gpr='git pull --rebase'
+alias gr='git rebase'
+alias gri='git rebase --interactive'
+alias grm='git rebase main'
+alias gs='git status'
+alias gt='git tag'
+alias gpt='git push origin --tags'
+alias gcll='g config --list --local'
+alias gcl='g config --local'
+alias glocal='git config --local user.name "rageblob"
+git config --local user.email "39024407+rageblob@users.noreply.github.com"
+git config --local user.signinkey "rageblob-github"
+'
+
+# Docker
+CONTAINER='docker'
+if [[ ! $(command -v docker) && $(command -v podman) ]]; then
+  CONTAINER='podman'
+fi
+alias d="${CONTAINER}"
+alias dps="${CONTAINER} ps"
+alias dpa="${CONTAINER} ps -a"
+alias dim="${CONTAINER} images"
+alias drm="${CONTAINER} rm"
+alias dv="${CONTAINER} volume"
+alias dprune="${CONTAINER} system prune -af"
+alias dimp="${CONTAINER} image prune -af"
+alias dcu="${CONTAINER}-compose up -d"
+alias dcd="${CONTAINER}-compose down"
+alias dcl="${CONTAINER}-compose logs -f"
+alias dctop="${CONTAINER}-compose top" # inspect running processes of services
+alias dlog="${CONTAINER} logs"
+alias dinspect="${CONTAINER} inspect"
+
+# Kubernetes
+alias k='kubectl'
+alias kd='kubectl describe'
+alias kg='kubectl get'
+alias kgn='kubectl get nodes'
+alias kgp='kubectl get pods'
+alias ksc='kubectl config set-context'
+alias kr='kubectl run'
+# kubectl-ctx (requires https://github.com/weibeld/kubectl-ctx)
+alias kx='kubectl ctx'
+alias kxl='kubectl ctx -l'
+# kubectl-ns (requires https://github.com/weibeld/kubectl-ns)
+alias kn='kubectl get namespaces' # overwritten if kubectl-ns is installed
+alias kns='kubectl ns'
+alias knl='kubectl ns -l'
+# Kustomize (requires https://formulae.brew.sh/formula/kustomize)
+alias km='kustomize'
+alias kb='kustomize build'
+
+# Terraform
+alias tf='terraform'
+alias tfi='terraform init'
+alias tfp='terraform plan'
+alias tfa='terraform apply'
+alias tfs='terraform state'
+# Terragrunt
+alias tg='terragrunt'
+alias tgi='terragrunt init'
+alias tgp='terragrunt plan'
+alias tga='terragrunt apply'
+alias tgs='terragrunt state'
+
+# Direnv
+alias da='direnv allow .'
+
+# Ansible
+alias a='ansible'
+alias ac='ansible-console'
+alias ad='ansible-doc'
+alias ag='ansible-galaxy'
+alias ap='ansible-playbook'
+alias al='ansible-pull'
+# Ansible-Vault
+alias av='ansible-vault'

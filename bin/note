@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Default notebook directory
+NOTEBOOK="${HOME}/Notes"
+
+# Prompt user for headline
+read -p "Heading: " TITLE
+
+# Generate timestamp
+TIMESTAMP=$(date +"%Y%m%d%H%M")
+TIME=$(date +"%Y-%m-%d")
+
+# Open neovim with the constructed file and insert this template:
+# ---
+# title: "$TITLE"
+# date: YYYY-MM-DD
+# tags: #trailing space
+# ---
+#
+# plus trailing empty lines
+TEMPLATE="---
+title: \"$TITLE\"
+date: $TIME
+tags: 
+---
+
+# $TITLE
+
+"
+
+# Construct file path
+FILE="$NOTEBOOK/${TIMESTAMP}-${TITLE}.md"
+
+# enter neovim, paste template and start in insert mode
+nvim -c "i|${TEMPLATE}" -c "startinsert" -- "$FILE"

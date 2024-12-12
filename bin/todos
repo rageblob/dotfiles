@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# list TODOs in $HOME/Notes
+NOTE=$(find $HOME/Notes -type f -name "TODO-*" | fzf --preview="bat --style plain --color=always {}")
+NOTE="${NOTE// /_}" # ensure spaces are underscores
+if [[ -f ${NOTE} ]]; then
+  nvim ${NOTE}
+fi

@@ -28,12 +28,12 @@ alias de='deactivate'
 
 # Git
 alias g='git'
-alias lg='lazygit'
+alias lg='lazygit' # requires lazygit
 alias gi='git init'
 alias gc='git checkout'
 alias gcm='git checkout main'
 alias ga='git add'
-alias gl='git pull'
+alias gl='git pull --prune'
 alias gp='git push'
 alias gpf='git push --force-with-lease'
 alias gb='git branch'

@@ -3,14 +3,17 @@ alias l='ls -lh'
 alias la='ls -lAh'
 alias rf='rm -rf'
 alias fman='compgen -c | fzf | xargs man'
+alias e='exit'
+alias q='exit'
+
+#Tmux
 alias tm='tmux'
 alias ta='tmux attach'
 alias tmd='tmux detach'
 alias td='tmux detach'
-alias tms='tmux ls'
+alias tml='tmux ls'
+alias tms='tm list-sessions'
 alias tmk='tmux kill-session -t'
-alias e='exit'
-alias q='exit'
 
 # Vim & NeoVim
 alias v='vim'

@@ -42,7 +42,9 @@ attempt_update() {
   fi
 }
 
-loop_workspace() {
+update_workspace() {
+  # git pulls in root dir and all subfolders one level down
+  attempt_update $1; printf "\n"
   for dir in $1/*/; do
     attempt_update "$dir"; printf "\n"
   done
@@ -50,4 +52,4 @@ loop_workspace() {
 
 WORKSPACE=$(set_workspace $1)
 printf "Working directory: $WORKSPACE\n\n"
-loop_workspace $WORKSPACE
+update_workspace $WORKSPACE

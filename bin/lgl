@@ -16,7 +16,7 @@ set_workspace() {
     if [[ -n $WORKSPACE ]]; then
       printf "Environment vairable \$WORKSPACE is set.\n  Will use that as working directory:\n" > `tty`
       printf "\t\$WORKSPACE=$WORKSPACE\n\n" > `tty`
-      echo "$(cd $WORKSPACE; pwd; cd - >/dev/null)"
+      echo "$(cd $WORKSPACE; pwd; cd - > /dev/null)"
     else
       echo "$(pwd)"
     fi
@@ -25,7 +25,7 @@ set_workspace() {
     printf "Error! \"$1\" is not a valid directory!" > `tty`; exit 1
   # use valid path
   else
-    echo "$(cd $1; pwd; cd - >/dev/null)"
+    echo "$(cd $1; pwd; cd - > /dev/null)"
   fi
 }
 
@@ -37,17 +37,17 @@ pull_main() {
   else
     DEFAULTBRANCH="main"
   fi
-  git pull -p origin $DEFAULTBRANCH:$DEFAULTBRANCH > /dev/null
+  git pull -p origin $DEFAULTBRANCH:$DEFAULTBRANCH --rebase > /dev/null
 }
 
 update_repo() {
   DIRTY=$(git status -s)
   if [[ -n $DIRTY ]]; then
     echo "🔥 Worktree dirty! Stashing progress..."
-    git add . && git stash >/dev/null
+    git add . && git stash > /dev/null
     pull_main
     echo "✅ Popping stash..."
-    git stash pop >/dev/null
+    git stash pop > /dev/null
   else
     pull_main
   fi
@@ -56,7 +56,7 @@ update_repo() {
 attempt_update() {
   if [[ -d "$1/.git" ]]; then
     echo "Updating default branch in $1"
-    cd "$1" && update_repo "$1" && cd - >/dev/null
+    cd "$1" && update_repo "$1" && cd - > /dev/null
   else
     echo "Skipping $1 - not a git repository"
   fi

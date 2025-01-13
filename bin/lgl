@@ -29,27 +29,47 @@ set_workspace() {
   fi
 }
 
-pull_git() {
-  cd "$1" && git pull --prune && (cd - >/dev/null)
+pull_main() {
+  DEFAULTBRANCH=$(git branch -r | grep "origin/main") 
+  # if this expression is empty, "master" is the default branch
+  if [[ -z $DEFAULTBRANCH ]]; then
+    DEFAULTBRANCH="master"
+  else
+    DEFAULTBRANCH="main"
+  fi
+  git pull -p origin $DEFAULTBRANCH:$DEFAULTBRANCH > /dev/null
+}
+
+update_repo() {
+  DIRTY=$(git status -s)
+  if [[ -n $DIRTY ]]; then
+    echo "🔥 Worktree dirty! Stashing progress..."
+    git add . && git stash >/dev/null
+    pull_main
+    echo "✅ Popping stash..."
+    git stash pop >/dev/null
+  else
+    pull_main
+  fi
 }
 
 attempt_update() {
-  if [ -d "$1/.git" ]; then
-    echo "Updating repository in $1"
-    pull_git "$1"
+  if [[ -d "$1/.git" ]]; then
+    echo "Updating default branch in $1"
+    cd "$1" && update_repo "$1" && cd - >/dev/null
   else
     echo "Skipping $1 - not a git repository"
   fi
 }
 
 update_workspace() {
-  # git pulls in root dir and all subfolders one level down
   attempt_update $1; printf "\n"
+  # `git pull origin main:main` in every directory
   for dir in $1/*/; do
     attempt_update "$dir"; printf "\n"
   done
 }
 
-WORKSPACE=$(set_workspace $1)
+WORKSPACE=$(set_workspace "$1")
 printf "Working directory: $WORKSPACE\n\n"
-update_workspace $WORKSPACE
+update_workspace "$WORKSPACE"

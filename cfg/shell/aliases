@@ -22,7 +22,7 @@ alias nv='nvim'
 # Python
 alias p='python3'
 alias py='python3'
-alias pe='python3 -m venv ./'
+alias pv='python3 -m venv ./'
 alias pip='pip3'
 alias p3='pip3'
 alias pa='source ./bin/activate'

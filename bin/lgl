@@ -29,23 +29,32 @@ set_workspace() {
   fi
 }
 
-pull_main() {
-  DEFAULTBRANCH=$(git branch -r | grep "origin/main") 
+find_default_branch() {
+  local DEFAULTBRANCH=$(git branch -r | grep "origin/main") 
   # if this expression is empty, "master" is the default branch
   if [[ -z $DEFAULTBRANCH ]]; then
     DEFAULTBRANCH="master"
   else
     DEFAULTBRANCH="main"
   fi
+  echo $DEFAULTBRANCH
+}
+
+pull_main() {
+  local DEFAULTBRANCH=$(find_default_branch)
   git pull -p origin $DEFAULTBRANCH:$DEFAULTBRANCH --rebase > /dev/null
 }
 
 update_repo() {
-  DIRTY=$(git status -s)
+  local BRANCH=$(git branch --show-current)
+  local DIRTY=$(git status -s)
   if [[ -n $DIRTY ]]; then
     echo "🔥 Worktree dirty! Stashing progress..."
     git add . && git stash > /dev/null
     pull_main
+    if [[ $BRANCH -ne "main" && $BRANCH -ne "master"  ]]; then
+      git rebase $(find_default_branch) > /dev/null 
+    fi
     echo "✅ Popping stash..."
     git stash pop > /dev/null
   else

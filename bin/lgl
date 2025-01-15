@@ -1,48 +1,51 @@
 #!/usr/bin/env bash
 set -e
 
-# Loops across all subdirectories of its working path,
-# checks if they're tracked by git and, if so,
-# runs `git pull -- prune` in each one.
+# This script does:
+# - check if the current directory or any of its children are tracked by git
+# - stash any dirty working trees
+# - pull the most recent changes on the default branch of each repo
+# - rebase the current feature branch onto the updated default branch
+# - where applicable, pop the stashed changes
 #
-# You may supply a path as argument. If no args are supplied,
-# it first checks for environment variable $WORKSPACE.
-# If $WORKSPACE is unset, will default to $pwd.
+# You may optionally supply a target path as argument.
+# If no args are supplied,
+# this first checks for environment variable $WORKSPACE.
+# If $WORKSPACE is unset, it will default to $pwd.
 
 set_workspace() {
-  # no args?
-  if [[ -z ${1+x} ]]; then 
-    # $WORKSPACE set?
+  # empty input?
+  if [[ -z $1 ]]; then 
+    # environment vairable $WORKSPACE set?
     if [[ -n $WORKSPACE ]]; then
-      printf "Environment vairable \$WORKSPACE is set.\n  Will use that as working directory:\n" > `tty`
+      printf "Environment vairable \$WORKSPACE is set.\n  Using that as working directory:\n" > `tty`
       printf "\t\$WORKSPACE=$WORKSPACE\n\n" > `tty`
       echo "$(cd $WORKSPACE; pwd; cd - > /dev/null)"
     else
       echo "$(pwd)"
     fi
-  # invalid args?
+  # invalid input?
   elif [[ ! -d "$1" ]]; then
     printf "Error! \"$1\" is not a valid directory!" > `tty`; exit 1
-  # use valid path
   else
     echo "$(cd $1; pwd; cd - > /dev/null)"
   fi
 }
 
-find_default_branch() {
-  local DEFAULTBRANCH=$(git branch -r | grep "origin/main") 
-  # if this expression is empty, "master" is the default branch
-  if [[ -z $DEFAULTBRANCH ]]; then
-    DEFAULTBRANCH="master"
+echo_default_branch() {
+  local ISMAIN=$(git branch -r | grep "origin/main") 
+  # if this expression evaluates empty, the default branch is "master"
+  if [[ -n $ISMAIN ]]; then
+    local DEFAULTBRANCH="main"
   else
-    DEFAULTBRANCH="main"
+    local DEFAULTBRANCH="master"
   fi
   echo $DEFAULTBRANCH
 }
 
-pull_main() {
-  local DEFAULTBRANCH=$(find_default_branch)
-  git pull -p origin $DEFAULTBRANCH:$DEFAULTBRANCH --rebase > /dev/null
+update_default_branch() {
+  local DEFAULT=$(echo_default_branch)
+  git pull -p origin $DEFAULT:$DEFAULT --rebase > /dev/null
 }
 
 update_repo() {
@@ -51,14 +54,15 @@ update_repo() {
   if [[ -n $DIRTY ]]; then
     echo "🔥 Worktree dirty! Stashing progress..."
     git add . && git stash > /dev/null
-    pull_main
-    if [[ $BRANCH -ne "main" && $BRANCH -ne "master"  ]]; then
-      git rebase $(find_default_branch) > /dev/null 
+    update_default_branch
+    if [[ $BRANCH -ne "main" && $BRANCH -ne "master" ]]; then
+      local DEFAULTBRANCH=$(echo_default_branch)
+      git rebase $DEFAULTBRANCH > /dev/null 
     fi
     echo "✅ Popping stash..."
     git stash pop > /dev/null
   else
-    pull_main
+    update_default_branch > /dev/null
   fi
 }
 

@@ -1,9 +1,44 @@
 #!/bin/bash
 
-# fuzzy search and preview files in ~/Notes/
-# and optionally edit them
-NOTE=$(fzf --walker-root ${HOME}/Notes --preview-window=right --preview="bat --style plain --color=always {}")
-NOTE="${NOTE// /_}" # ensure spaces are underscores
-if [[ -f ${NOTE} ]]; then
-  nvim ${NOTE}
+# This script does:
+# - list Notes in $HOME/Notes
+# - edit (in neovim) or delete the selected file
+
+select_file() {
+  local FILE=$(cd "$1" && (find . -type f | fzf --preview="bat --style plain --color=always {}" | sed 's/^\.\///g') && cd - > /dev/null )
+  echo $FILE
+}
+
+get_user_response_character() {
+  # Change terminal settings to capture single keypress
+  stty -echo -icanon
+  local CHOICE=$(dd bs=1 count=1 2>/dev/null)
+  stty echo icanon
+  echo $CHOICE
+}
+
+# BEGIN
+NOTES_FOLDER="$HOME/Notes"
+FILE=$(select_file "$NOTES_FOLDER")
+FILEPATH="$NOTES_FOLDER/$FILE"
+
+if [[ -f "$FILEPATH" ]]; then
+  echo "File: ${FILE}"
+  echo "  Press Enter to edit, D to delete: "
+  RESPONSE=$(get_user_response_character)
+
+  if [[ "$RESPONSE" =~ ^[Dd]$ ]]; then
+    echo "Are you sure you want to delete '$FILE'? (y/N): "
+    CONFIRM=$(get_user_response_character)
+    if [[ "$CONFIRM" =~ ^[Yy]$ ]]; then
+      rm "$FILEPATH"
+      echo "File '$FILEPATH' deleted."
+    fi
+  # Check for Escape (ASCII 27)
+  elif [[ "$RESPONSE" == $'\e' ]]; then
+    echo "Operation cancelled."
+    exit 1
+  else
+    nvim "$FILEPATH"
+  fi
 fi

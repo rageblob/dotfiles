@@ -1,0 +1,22 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "cmd+t cmd+t",
+        "command": "workbench.action.terminal.new"
+    },
+    {
+        "key": "cmd+down",
+        "command": "workbench.action.decreaseViewSize",
+        "when": "panelFocus"
+    },
+    {
+        "key": "cmd+up",
+        "command": "workbench.action.increaseViewSize",
+        "when": "panelFocus"
+    },
+    {
+        "key": "alt+n",
+        "command": "-gl.newChatConversation",
+        "when": "config.gitlab.duoChat.enabled && gitlab:chatAvailable && gitlab:chatAvailableForProject"
+    }
+]

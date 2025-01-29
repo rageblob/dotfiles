@@ -1,0 +1,79 @@
+{
+    "[markdown]": {
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.quickSuggestions": {
+            "comments": "on",
+            "other": "on",
+            "strings": "on"
+        },
+        "editor.tabSize": 2,
+        "editor.unicodeHighlight.ambiguousCharacters": false,
+        "editor.unicodeHighlight.invisibleCharacters": false,
+        "editor.wordWrap": "on"
+    },
+    "[yaml]": {
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.autoIndent": "advanced",
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2
+    },
+    "chat.editor.fontFamily": "CaskaydiaCove Nerd Font Propo",
+    "clock.alignment": "Right",
+    "clock.format": "HH:MM",
+    "debug.console.fontFamily": "CaskaydiaCove Nerd Font Propo",
+    "editor.codeLensFontFamily": "CaskaydiaCove Nerd Font Propo",
+    "editor.fontFamily": "CaskaydiaCove Nerd Font Propo",
+    "editor.fontWeight": "normal",
+    "editor.fontLigatures": false,
+    "editor.fontSize": 13,
+    "editor.inlineSuggest.fontFamily": "CaskaydiaCove Nerd Font Propo",
+    "editor.rulers": [
+        //80
+    ],
+    "editor.tabSize": 2,
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": "comment",
+                "settings": {
+                    "fontStyle": "italic"
+                }
+            }
+        ]
+    },
+    "editor.wordWrap": "on",
+    "editor.wordWrapColumn": 100,
+    "editor.wrappingStrategy": "advanced",
+    "explorer.confirmDragAndDrop": false,
+    "gitlens.blame.fontFamily": "CaskaydiaCove Nerd Font Propo",
+    "gitlens.currentLine.fontFamily": "CaskaydiaCove Nerd Font Propo",
+    "markdown.extension.tableFormatter.normalizeIndentation": true,
+    "scm.inputFontFamily": "CaskaydiaCove Nerd Font Propo",
+    "security.workspace.trust.untrustedFiles": "open",
+    "terminal.external.osxExec": "iTerm2.app",
+    "terminal.integrated.fontSize": 13,
+    "vim.autoSwitchInputMethod.enable": true,
+    "vim.sneak": true,
+    "vim.whichwrap": "b,s,<,>",
+    "redhat.telemetry.enabled": false,
+    "yaml-embedded-languages.include": {},
+    "workbench.colorTheme": "Solarized Light",
+    "vs-kubernetes": {
+        "vs-kubernetes.crd-code-completion": "disabled"
+    },
+    // pink as the accent color
+    "catppuccin.accentColor": "pink",
+    // use your accent (pink) on the statusBar as well
+    "catppuccin.customUIColors": {
+        "all": {
+            "statusBar.foreground": "accent"
+        }
+    },
+    "git.autofetch": true,
+    "workbench.editorAssociations": {
+        "*.tfplan": "default"
+    },
+    "gitlab.duo.enabledWithoutGitlabProject": false,
+    "gitlab.duoChat.enabled": false,
+    "gitlab.keybindingHints.enabled": false
+}

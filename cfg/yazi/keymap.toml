@@ -1,0 +1,30 @@
+# Docs:
+# https://yazi-rs.github.io/docs/configuration/overview#mixing
+# Defaults:
+# https://github.com/sxyazi/yazi/blob/shipped/yazi-config/preset/keymap-default.toml
+
+# `prepend_` assigns the entry higher priority than the default
+[manager]
+prepend_keymap = [
+	{ on = "?", run = "help", desc = "Open help" },
+]
+
+[tasks]
+prepend_keymap = [
+	{ on = "?", run = "help", desc = "Open help" },
+]
+
+[spot]
+prepend_keymap = [
+	{ on = "?", run = "help", desc = "Open help" },
+]
+
+[pick]
+prepend_keymap = [
+	{ on = "?", run = "help", desc = "Open help" },
+]
+
+[confirm]
+prepend_keymap = [
+	{ on = "?", run = "help", desc = "Open help" },
+]

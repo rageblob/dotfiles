@@ -5,3 +5,9 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # AWS CLI autocompletion
 complete -C aws_completer aws
+
+# Allow ZSH to autoupdate itself
+GRANTED_ENABLE_AUTO_REASSUME=true
+
+# fzf integration
+source <(fzf --zsh)

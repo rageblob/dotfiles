@@ -2,10 +2,12 @@ ansible
 asdf
 awscli
 bash
+bat
 direnv
 fd
 fzf
 go
+glab
 granted
 helm
 htop
@@ -18,9 +20,14 @@ kustomize
 lazygit
 lua-language-server
 neovim
+pandoc
+podman
+podman-compose
 ripgrep
 sops
 tldr
+tree
+tree-sitter
 tmux
 tree
 yazi

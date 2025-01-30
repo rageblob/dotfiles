@@ -17,7 +17,6 @@ kubernetes-cli
 kustomize
 lazygit
 lua-language-server
-nb
 neovim
 ripgrep
 sops

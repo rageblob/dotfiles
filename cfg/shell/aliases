@@ -2,6 +2,7 @@
 alias l='ls -lh'
 alias la='ls -lAh'
 alias rf='rm -rf'
+alias re='rg -e'
 alias fman='compgen -c | fzf | xargs man'
 alias e='exit'
 alias q='exit'

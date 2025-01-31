@@ -8,6 +8,3 @@ complete -C aws_completer aws
 
 # Allow ZSH to autoupdate itself
 GRANTED_ENABLE_AUTO_REASSUME=true
-
-# fzf integration
-source <(fzf --zsh)

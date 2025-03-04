@@ -20,7 +20,7 @@ set_workspace() {
     if [[ -n $WORKSPACE ]]; then
       printf "Environment vairable \$WORKSPACE is set.\n  Using that as working directory:\n" > `tty`
       printf "\t\$WORKSPACE=$WORKSPACE\n\n" > `tty`
-      echo "$(cd $WORKSPACE; pwd; cd - > /dev/null)"
+      echo "$(cd $WORKSPACE && pwd)"
     else
       echo "$(pwd)"
     fi
@@ -53,14 +53,15 @@ update_git() {
   local DIRTY=$(git status -s)
   if [[ -n $DIRTY ]]; then
     echo "🔥 Worktree dirty! Stashing progress..."
-    git add . && git stash > /dev/null
+    git fetch --prune &> /dev/null
+    (git add . && git stash > /dev/null)
     update_default_branch
     if [[ $BRANCH -ne "main" && $BRANCH -ne "master" ]]; then
       local DEFAULTBRANCH=$(echo_default_branch)
       git rebase $DEFAULTBRANCH > /dev/null 
     fi
     echo "✅ Popping stash..."
-    git stash pop > /dev/null
+    git stash pop &> /dev/null
   else
     update_default_branch > /dev/null
   fi

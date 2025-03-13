@@ -5,7 +5,7 @@
 # - edit (in neovim) or delete the selected file
 
 select_file() {
-  local FILE=$(cd $NOTES_FOLDER && (find . -type f -name "TODO-*" | fzf --preview="bat --style plain --color=always {}" | sed 's/^\.\///g') && cd - > /dev/null )
+  local FILE=$(cd $NOTES_FOLDER && (find . -maxdepth 1 -type f -name "TODO-*" | fzf --preview="bat --style plain --color=always {}" | sed 's/^\.\///g') && cd - > /dev/null )
   echo $FILE
 }
 

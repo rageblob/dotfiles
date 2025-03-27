@@ -18,5 +18,24 @@
         "key": "alt+n",
         "command": "-gl.newChatConversation",
         "when": "config.gitlab.duoChat.enabled && gitlab:chatAvailable && gitlab:chatAvailableForProject"
+    },
+    {
+        "key": "shift+cmd+m",
+        "command": "workbench.action.toggleMaximizedPanel"
+    },
+    {
+        "key": "[Period]",
+        "command": "selectForCompare",
+        "when": "filesExplorerFocus && foldersViewVisible"
+    },
+    {
+        "key": "shift+cmd+c",
+        "command": "compareSelected",
+        "when": "filesExplorerFocus && foldersViewVisible"
+    },
+    {
+        "key": "shift+cmd+o",
+        "command": "workbench.files.action.compareFileWith",
+        "when": "filesExplorerFocus && foldersViewVisible"
     }
 ]

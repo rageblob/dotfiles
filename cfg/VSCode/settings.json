@@ -41,7 +41,6 @@
             }
         ]
     },
-    "editor.wordWrap": "on",
     "editor.wordWrapColumn": 100,
     "editor.wrappingStrategy": "advanced",
     "explorer.confirmDragAndDrop": false,
@@ -57,7 +56,6 @@
     "vim.whichwrap": "b,s,<,>",
     "redhat.telemetry.enabled": false,
     "yaml-embedded-languages.include": {},
-    "workbench.colorTheme": "Solarized Light",
     "vs-kubernetes": {
         "vs-kubernetes.crd-code-completion": "disabled"
     },
@@ -75,5 +73,8 @@
     },
     "gitlab.duo.enabledWithoutGitlabProject": false,
     "gitlab.duoChat.enabled": false,
-    "gitlab.keybindingHints.enabled": false
+    "gitlab.keybindingHints.enabled": false,
+    "workbench.colorTheme": "Solarized Light",
+    "files.trimTrailingWhitespace": true,
+    "editor.wordWrap": "on"
 }

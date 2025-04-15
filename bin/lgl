@@ -15,7 +15,7 @@ set -e
 
 set_workspace() {
   # empty input?
-  if [[ -z $1 ]]; then 
+  if [[ -z $1 ]]; then
     # environment vairable $WORKSPACE set?
     if [[ -n $WORKSPACE ]]; then
       printf "Environment vairable \$WORKSPACE is set.\n  Using that as working directory:\n" > `tty`
@@ -26,14 +26,14 @@ set_workspace() {
     fi
   # invalid input?
   elif [[ ! -d "$1" ]]; then
-    printf "Error! \"$1\" is not a valid directory!" > `tty`; exit 1
+    printf "Error! \"$1\" not a valid directory!" > `tty`; exit 1
   else
     echo "$(cd $1; pwd; cd - > /dev/null)"
   fi
 }
 
 echo_default_branch() {
-  local ISMAIN=$(git branch -r | grep "origin/main") 
+  local ISMAIN=$(git branch -r | grep "origin/main")
   # if this expression evaluates empty, the default branch is "master"
   if [[ -n $ISMAIN ]]; then
     local DEFAULTBRANCH="main"
@@ -45,34 +45,33 @@ echo_default_branch() {
 
 update_default_branch() {
   local DEFAULT=$(echo_default_branch)
-  git pull -p origin $DEFAULT:$DEFAULT --rebase > /dev/null
+  git pull -p origin $DEFAULT:$DEFAULT --rebase &> /dev/null
 }
 
 update_git() {
+  git fetch --prune &> /dev/null
   local BRANCH=$(git branch --show-current)
   local DIRTY=$(git status -s)
   if [[ -n $DIRTY ]]; then
     echo "🔥 Worktree dirty! Stashing progress..."
-    git fetch --prune &> /dev/null
-    (git add . && git stash > /dev/null)
+    (git add -u && git stash) &> /dev/null
     update_default_branch
-    if [[ $BRANCH -ne "main" && $BRANCH -ne "master" ]]; then
-      local DEFAULTBRANCH=$(echo_default_branch)
-      git rebase $DEFAULTBRANCH > /dev/null 
+    if [[ "$BRANCH" != "main" && "$BRANCH" != "master" ]]; then
+      git rebase $(echo_default_branch) &> /dev/null
     fi
     echo "✅ Popping stash..."
     git stash pop &> /dev/null
   else
-    update_default_branch > /dev/null
+    update_default_branch &> /dev/null
   fi
 }
 
 attempt_update() {
   if [[ -d "$1/.git" ]]; then
     echo "Updating default branch in $1"
-    (cd "$1" && update_git > /dev/null)
+    (cd "$1" && update_git)
   else
-    echo "Skipping $1 - not a git repository"
+    echo "Skipping $1 - not a git repository!"
   fi
 }
 

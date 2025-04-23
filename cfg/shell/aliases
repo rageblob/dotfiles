@@ -3,7 +3,8 @@ alias l='ls -lh'
 alias la='ls -lAh'
 alias rf='rm -rf'
 alias re='rg --sort path -e'
-alias fh='history | fzf | sed -e "s/^[ ]*[0-9]*[ ]*//"'
+alias fh='history | sed -e "s/^[\ ]*[0-9]*[\ ]*//" | fzf'
+alias fhh='history | fzf | sed -e "s/^[\ ]*[0-9]*[\ ]*//"'
 alias fman='compgen -c | fzf | xargs man'
 alias e='exit'
 alias q='exit'
@@ -11,7 +12,7 @@ alias q='exit'
 #Eza (better ls)
 alias l='eza'
 alias ls='eza -l --no-user --no-time'
-alias la='eza -la --no-user --no-time --git'
+alias la='eza -la --no-user --git'
 
 #Tmux
 alias tm='tmux'

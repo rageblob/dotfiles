@@ -12,7 +12,7 @@ alias q='exit'
 #Eza (better ls)
 alias l='eza'
 alias ls='eza -l --no-user --no-time'
-alias la='eza -la --no-user --git'
+alias la='eza -la --no-user --git --links'
 
 #Tmux
 alias tm='tmux'

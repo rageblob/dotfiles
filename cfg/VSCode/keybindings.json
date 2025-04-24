@@ -15,11 +15,6 @@
         "when": "panelFocus"
     },
     {
-        "key": "alt+n",
-        "command": "-gl.newChatConversation",
-        "when": "config.gitlab.duoChat.enabled && gitlab:chatAvailable && gitlab:chatAvailableForProject"
-    },
-    {
         "key": "shift+cmd+m",
         "command": "workbench.action.toggleMaximizedPanel"
     },
@@ -37,5 +32,25 @@
         "key": "shift+cmd+o",
         "command": "workbench.files.action.compareFileWith",
         "when": "filesExplorerFocus && foldersViewVisible"
+    },
+    {
+        "key": "alt+n",
+        "command": "-gl.newChatConversation",
+        "when": "config.gitlab.duoChat.enabled && gitlab:chatAvailable && gitlab:chatAvailableForProject"
+    },
+    {
+        "key": "alt+cmd+h",
+        "command": "gitlens.toggleFileHeatmap",
+        "when": "editorFocus"
+    },
+    {
+        "key": "shift+cmd+p",
+        "command": "markdown.showPreviewToSide",
+        "when": "!notebookEditorFocused && editorLangId == 'markdown'"
+    },
+    {
+        "key": "cmd+k v",
+        "command": "-markdown.showPreviewToSide",
+        "when": "!notebookEditorFocused && editorLangId == 'markdown'"
     }
 ]

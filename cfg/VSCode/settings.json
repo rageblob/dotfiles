@@ -74,7 +74,6 @@
     "gitlab.duo.enabledWithoutGitlabProject": false,
     "gitlab.duoChat.enabled": false,
     "gitlab.keybindingHints.enabled": false,
-    "workbench.colorTheme": "Solarized Light",
     "files.trimTrailingWhitespace": true,
-    "editor.wordWrap": "on"
+    "workbench.colorTheme": "Noctis Lilac"
 }

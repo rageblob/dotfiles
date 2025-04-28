@@ -5,7 +5,7 @@
 # - edit (in neovim) or delete the selected file
 
 select_file() {
-  local FILE=$(cd $NOTES_FOLDER && (find . -maxdepth 1 -type f -name "TODO-*" | fzf --preview="bat --style plain --color=always {}" | sed 's/^\.\///g') && cd - > /dev/null )
+  local FILE=$(cd "$1" && find . -maxdepth 1 -type f -name "TODO-*" | sed 's/^\.\///g' | fzf --preview="bat --style plain {}")
   echo $FILE
 }
 
@@ -17,13 +17,15 @@ get_user_response_character() {
   echo $CHOICE
 }
 
+# BEGIN
 NOTES_FOLDER="$HOME/Notes"
-FILE=$(select_file)
+FILE=$(select_file "$NOTES_FOLDER")
 FILEPATH="$NOTES_FOLDER/$FILE"
+ARCHIVE="$NOTES_FOLDER/Archive"
 
 if [[ -f "$FILEPATH" ]]; then
   echo "File: ${FILE}"
-  echo "  Press Enter to edit, D to delete: "
+  echo "  Press Enter to edit, a/A to archive, d/D to delete: (a/A/d/D)"
   RESPONSE=$(get_user_response_character)
 
   if [[ "$RESPONSE" =~ ^[Dd]$ ]]; then
@@ -32,6 +34,13 @@ if [[ -f "$FILEPATH" ]]; then
     if [[ "$CONFIRM" =~ ^[Yy]$ ]]; then
       rm "$FILEPATH"
       echo "File '$FILEPATH' deleted."
+    fi
+  elif [[ "$RESPONSE" =~ ^[Aa]$ ]]; then
+    echo "Archive '$FILE'? (y/N): "
+    CONFIRM=$(get_user_response_character)
+    if [[ "$CONFIRM" =~ ^[Yy]$ ]]; then
+      mv "$FILEPATH" $ARCHIVE
+      echo "Archived '$FILE' to $ARCHIVE"
     fi
   # Check for Escape (ASCII 27)
   elif [[ "$RESPONSE" == $'\e' ]]; then

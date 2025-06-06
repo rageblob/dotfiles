@@ -51,15 +51,16 @@ update_default_branch() {
 update_git() {
   git fetch --prune &> /dev/null
   local BRANCH=$(git branch --show-current)
-  local DIRTY=$(git status -s)
+  local DIRTY=$(git status -s | grep -v '^?? ') # ignore untracked files in status
   if [[ -n $DIRTY ]]; then
-    echo "🔥 Worktree dirty! Stashing progress..."
-    (git add -u && git stash) &> /dev/null
-    update_default_branch
+    (
+      echo "🔥 Worktree dirty! 📦 Stashing progress..."
+      git add -u && git stash &> /dev/null && update_default_branch
+    )
     if [[ "$BRANCH" != "main" && "$BRANCH" != "master" ]]; then
       git rebase $(get_default_branch) &> /dev/null
     fi
-    echo "✅ Popping stash..."
+    echo "📦 Popping stash..."
     git stash pop &> /dev/null
   else
     update_default_branch &> /dev/null
@@ -68,7 +69,10 @@ update_git() {
 
 attempt_update() {
   if [[ -d "$1/.git" ]]; then
-    (cd "$1" && update_git && echo "Updated default branch: $1")
+    (
+      cd "$1" && printf "Now updating: $1\n"
+      update_git && echo "✅ default branch updated." || echo "❌ Update failed!"
+    )
   else
     echo "Skipping $1 - not a git repository!"
   fi
@@ -77,7 +81,7 @@ attempt_update() {
 update_workspace() {
   attempt_update $1; printf "\n"
   for dir in $1/*/; do
-    attempt_update "$dir"; printf "\n"
+    attempt_update "$dir" && printf "\n"
   done
 }
 

@@ -146,3 +146,7 @@ alias al='ansible-pull'
 alias av='ansible-vault'
 alias ad='ansible-vault decrypt --ask-vault-password'
 alias ae='ansible-vault encrypt --ask-vault-password'
+
+# SOPS (https://github.com/getsops/sops)
+alias sd='sops-decrypt'
+alias se='sops-encrypt'

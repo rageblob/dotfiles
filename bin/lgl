@@ -71,7 +71,7 @@ attempt_update() {
   if [[ -d "$1/.git" ]]; then
     (
       cd "$1" && printf "Now updating: $1\n"
-      update_git && echo "✅ default branch updated." || echo "❌ Update failed!"
+      update_git && echo "✅ default branch updated." || echo "❌ Something went wrong! Update failed! ❌"
     )
   else
     echo "Skipping $1 - not a git repository!"

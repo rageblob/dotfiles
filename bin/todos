@@ -40,7 +40,7 @@ if [[ -f "$FILEPATH" ]]; then
     CONFIRM=$(get_user_response_character)
     if [[ "$CONFIRM" =~ ^[Yy]$ ]]; then
       mv "$FILEPATH" $ARCHIVE
-      echo "Archived '$FILE' to $ARCHIVE"
+      echo "Moved '$FILE' to $ARCHIVE"
     fi
   # Check for Escape (ASCII 27)
   elif [[ "$RESPONSE" == $'\e' ]]; then

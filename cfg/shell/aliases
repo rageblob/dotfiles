@@ -46,6 +46,7 @@ alias gd='git diff'
 alias gi='git init'
 alias gb='git branch'
 alias gba='git branch --all'
+alias gh='git log -p --' # supposed to mean "git history" (of a given file)
 alias gc='git checkout'
 alias gcm='git checkout main'
 alias gf='git fetch origin --prune'

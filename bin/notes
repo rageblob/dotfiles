@@ -2,7 +2,7 @@
 
 # This script does:
 # - list Notes in $HOME/Notes
-# - edit (in neovim) or delete the selected file
+# - edit (in neovim), archive or delete the selected file
 
 select_file() {
   local FILE=$(cd "$1" && find . -maxdepth 1 -type f ! -name "TODO-*" | sed 's/^\.\///g' | fzf --preview="bat --style plain {}")
@@ -29,7 +29,7 @@ if [[ -f "$FILEPATH" ]]; then
   RESPONSE=$(get_user_response_character)
 
   if [[ "$RESPONSE" =~ ^[Dd]$ ]]; then
-    echo "Are you sure you want to delete '$FILE'? (y/N): "
+    echo "Are you sure you want to delete '$FILE'? THIS CAN NOT BE UNDONE: (y/Y) "
     CONFIRM=$(get_user_response_character)
     if [[ "$CONFIRM" =~ ^[Yy]$ ]]; then
       rm "$FILEPATH"

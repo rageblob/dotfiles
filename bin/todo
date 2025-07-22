@@ -3,25 +3,31 @@
 # Default notebook directory
 NOTEBOOK="${HOME}/Notes"
 
-# Prompt user for Heading
-read -p "TODO: " TITLE
+# Prompt user for Heading if not parsed as parameters already
+if [[ $# -gt 0 ]]; then
+  TITLE="$*" # parses all the parameters into one string
+else
+  read -p "Title: " TITLE
+fi
 
 # Generate timestamp
 TIMESTAMP=$(date +"%y%m%d%H%M")
 DATE=$(date +"%Y-%m-%d")
-
+CW=$(date +%V)
 # Open neovim with the constructed file and insert this template:
 # ---
 # title: "$TITLE"
-# date: YYYY-MM-DD
-# tags: #trailing space
+# date: YYYY-MM-DD, CW...
+# tags: []
+# status: "TODO" / "IN PROGRESS" / "DONE"
 # ---
 #
 # plus trailing empty lines
 TEMPLATE="---
 title: \"${TITLE}\"
-date: ${DATE}
+date: ${DATE}, CW ${CW}
 tags: []
+status: "TODO"
 ---
 
 # ${TITLE}
@@ -34,4 +40,4 @@ TITLE="${TITLE// /_}"
 FILE="${NOTEBOOK}/TODO-${TIMESTAMP}-${TITLE}.md"
 
 # enter neovim, insert template and start in insert mode
-nvim -c "i|${TEMPLATE}" -c "startinsert" -c "set filetype=markdown" -- "${FILE}"
+nvim -c "i|${TEMPLATE}" -c "TSDisable highlight" -c "startinsert" -- "$FILE"

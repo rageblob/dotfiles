@@ -3,8 +3,12 @@
 # Default notebook directory
 NOTEBOOK="${HOME}/Notes"
 
-# Prompt user for headline
-read -p "Heading: " TITLE
+# Prompt user for Heading if not parsed as parameters already
+if [[ $# -gt 0 ]]; then
+  TITLE="$*" # parses all the parameters into one string
+else
+  read -p "Title: " TITLE
+fi
 
 # Generate timestamp
 TIMESTAMP=$(date +"%y%m%d%H%M")
@@ -14,7 +18,7 @@ TIME=$(date +"%Y-%m-%d")
 # ---
 # title: "$TITLE"
 # date: YYYY-MM-DD
-# tags: #trailing space
+# tags: [] 
 # ---
 #
 # plus trailing empty lines
@@ -33,5 +37,5 @@ tags: []
 TITLE="${TITLE// /_}"
 FILE="$NOTEBOOK/${TIMESTAMP}-${TITLE}.md"
 
-# enter neovim, paste template and start in insert mode
-nvim -c "i|${TEMPLATE}" -c "startinsert" -- "$FILE"
+# enter neovim, insert template and start in insert mode
+nvim -c "i|${TEMPLATE}" -c "TSDisable highlight" -c "startinsert" -- "$FILE"

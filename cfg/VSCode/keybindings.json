@@ -5,14 +5,9 @@
         "command": "workbench.action.terminal.new"
     },
     {
-        "key": "cmd+down",
+        "key": "cmd+-",
         "command": "workbench.action.decreaseViewSize",
-        "when": "panelFocus"
-    },
-    {
-        "key": "cmd+up",
-        "command": "workbench.action.increaseViewSize",
-        "when": "panelFocus"
+        "when": "terminalFocus"
     },
     {
         "key": "shift+cmd+m",
@@ -44,13 +39,46 @@
         "when": "editorFocus"
     },
     {
-        "key": "shift+cmd+p",
-        "command": "markdown.showPreviewToSide",
-        "when": "!notebookEditorFocused && editorLangId == 'markdown'"
-    },
-    {
         "key": "cmd+k v",
         "command": "-markdown.showPreviewToSide",
         "when": "!notebookEditorFocused && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.focusNextGroup",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.focusPreviousGroup",
+        "when": "editorFocus"
+    },
+    {
+        "key": "shift+cmd+l",
+        "command": "gl.webview.duoWorkflowPanel.show"
+    },
+    {
+        "key": "alt+cmd+b",
+        "command": "git.blame.toggleEditorDecoration",
+        "when": "editorFocus"
+    },
+    {
+        "key": "alt+cmd+b",
+        "command": "workbench.action.toggleAuxiliaryBar",
+        "when": "!editorFocus"
+    },
+    {
+        "key": "alt+cmd+b",
+        "command": "-workbench.action.toggleAuxiliaryBar"
+    },
+    {
+        "key": "cmd+[BracketRight]",
+        "command": "workbench.action.decreaseViewHeight",
+        "when": "panelFocus"
+    },
+    {
+        "key": "cmd+-",
+        "command": "workbench.action.increaseViewHeight",
+        "when": "panelFocus"
     }
 ]

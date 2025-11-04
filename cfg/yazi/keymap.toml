@@ -7,6 +7,7 @@
 [manager]
 prepend_keymap = [
 	{ on = "?", run = "help", desc = "Open help" },
+  { on = ["l"], run = "shell --block lazygit", desc = "Run lazygit" },
 ]
 
 [tasks]

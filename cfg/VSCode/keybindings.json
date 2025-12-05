@@ -21,7 +21,7 @@
     {
         "key": "shift+cmd+c",
         "command": "compareSelected",
-        "when": "filesExplorerFocus && foldersViewVisible"
+        "when": "filesExplorerFocus || openEditorsFocus"
     },
     {
         "key": "shift+cmd+o",
@@ -72,13 +72,23 @@
         "command": "-workbench.action.toggleAuxiliaryBar"
     },
     {
-        "key": "cmd+[BracketRight]",
+        "key": "cmd+up",
         "command": "workbench.action.decreaseViewHeight",
         "when": "panelFocus"
     },
     {
-        "key": "cmd+-",
+        "key": "cmd+down",
         "command": "workbench.action.increaseViewHeight",
         "when": "panelFocus"
-    }
+    },
+    {
+        "key": "cmd+l cmd+b",
+        "command": "gitlens.toggleLineBlame",
+        "when": "editorFocus"
+    },
+    {
+        "key": "shift+cmd+c",
+        "command": "-workbench.action.terminal.openNativeConsole",
+        "when": "!terminalFocus"
+    },
 ]

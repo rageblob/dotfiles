@@ -29,7 +29,9 @@
   "clock.alignment": "Right",
   "clock.format": "HH:MM",
   "debug.console.fontFamily": "CaskaydiaCove Nerd Font Propo",
+  "diffEditor.hideUnchangedRegions.enabled": true,
   "docker.extension.dockerEngineAvailabilityPrompt": false,
+  "docker.extension.enableComposeLanguageServer": false,
   "editor.codeLensFontFamily": "JetBrainsMono Nerd Font Mono",
   "editor.fontFamily": "JetBrainsMono Nerd Font Mono",
   "editor.fontLigatures": true,
@@ -53,12 +55,15 @@
   "editor.wordWrapColumn": 100,
   "editor.wrappingStrategy": "advanced",
   "explorer.confirmDragAndDrop": false,
+  "extensions.autoUpdate": false,
   // To improve performance
   "extensions.experimental.affinity": {
     "vscodevim.vim": 1
   },
   "files.trimTrailingWhitespace": true,
   "git.autofetch": true,
+  "git.blame.editorDecoration.enabled": false,
+  "git.openRepositoryInParentFolders": "never",
   "github.copilot.advanced": {
     "github-enterprise.uri": "https://dkbag.ghe.com",
     "github.copilot.advanced": {
@@ -77,6 +82,7 @@
   "security.workspace.trust.untrustedFiles": "open",
   "terminal.external.osxExec": "iTerm2.app",
   "terminal.integrated.fontSize": 13,
+  "update.mode": "start",
   "vim.autoSwitchInputMethod.enable": true,
   "vim.easymotion": true,
   "vim.handleKeys": {
@@ -127,13 +133,13 @@
     }
   ],
   "vim.sneak": true,
-  "vim.useCtrlKeys": true,
-  "vim.useSystemClipboard": true,
-  "vim.whichwrap": "b,s,<,>",
   "vim.statusBarColors.commandlineinprogress": [
     "#FF7acc",
     "#ffffff"
   ],
+  "vim.useCtrlKeys": true,
+  "vim.useSystemClipboard": true,
+  "vim.whichwrap": "b,s,<,>",
   "vs-kubernetes": {
     "vs-kubernetes.crd-code-completion": "disabled",
     "vscode-kubernetes.helm-path-mac": "/opt/homebrew/bin/helm",
@@ -143,17 +149,20 @@
   "vscode-kubernetes.helm-path-mac": "/opt/homebrew/bin/helm",
   "vscode-kubernetes.kubectl-path-mac": "/opt/homebrew/bin/kubectl",
   "workbench.colorCustomizations": {
-    "statusBarItem.prominentForeground": "#ffffff",
+    "statusBarItem.prominentForeground": "#ffffff"
   },
   "workbench.editorAssociations": {
     "*.tfplan": "default"
   },
   "yaml-embedded-languages.include": {},
-  "extensions.autoUpdate": false,
-  "git.openRepositoryInParentFolders": "never",
-  "git.blame.editorDecoration.enabled": false,
-  "diffEditor.hideUnchangedRegions.enabled": true,
-  "workbench.colorTheme": "Horizon",
-  "update.mode": "start",
-  "docker.extension.enableComposeLanguageServer": false
+  "editor.guides.highlightActiveIndentation": "always",
+  "gitlens.currentLine.enabled": false,
+  "editor.wordWrap": "on",
+  "yaml-with-script.enabled": false,
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "none",
+  "files.enableTrash": false,
+  "editor.minimap.autohide": "scroll",
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.colorTheme": "Solarized Dark"
 }

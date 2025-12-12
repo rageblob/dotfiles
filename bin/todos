@@ -32,7 +32,7 @@ if [[ -f "$FILEPATH" ]]; then
   RESPONSE=$(get_user_response_character)
 
   if [[ "$RESPONSE" =~ ^[Dd]$ ]]; then
-    echo "Are you sure you want to delete '$FILE'? (y/N): "
+    echo "Are you sure you want to delete '$FILE'? THIS CAN NOT BE UNDONE: (y/Y): "
     CONFIRM=$(get_user_response_character)
     if [[ "$CONFIRM" =~ ^[Yy]$ ]]; then
       rm "$FILEPATH"

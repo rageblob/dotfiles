@@ -2,12 +2,13 @@
 alias l='ls -lh'
 alias la='ls -lAh'
 alias rf='rm -rf'
-alias re='rg --sort path -e'
+alias re='rg --sort path -F -- '
 alias fh='history | sed -e "s/^[\ ]*[0-9]*[\ ]*//" | fzf'
 alias fhh='history | fzf | sed -e "s/^[\ ]*[0-9]*[\ ]*//"'
 alias fman='compgen -c | fzf | xargs man'
 alias e='exit'
 alias q='exit'
+alias ca='code -a'
 
 #Eza (better ls)
 alias l='eza'

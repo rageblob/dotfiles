@@ -8,6 +8,9 @@
 prepend_keymap = [
 	{ on = "?", run = "help", desc = "Open help" },
   { on = "l", run = "shell --block lazygit", desc = "Run lazygit" },
+  { on = "q", run = "close", desc = "Close the current tab, or quit if it's last" },
+  { on = "<C-c>", run = "escape", desc = "Exit visual mode, clear selection, or cancel search" },
+  { on = "<S-c>", run = "shell --orphan 'code -a \"$0\" \"$@\"'", desc = "Open selected objects in current VSCode workspace" },
 ]
 
 [tasks]
@@ -23,6 +26,7 @@ prepend_keymap = [
 [pick]
 prepend_keymap = [
 	{ on = "?", run = "help", desc = "Open help" },
+  { on = "<S-a>", run = "shell 'code {}'", desc = "Append selected items to VSCode workspace" },
 ]
 
 [confirm]

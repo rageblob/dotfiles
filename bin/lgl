@@ -48,7 +48,7 @@ update_default_branch() {
   git pull -p origin $DEFAULT:$DEFAULT --rebase &> /dev/null
 }
 
-update_git() {
+update_repo() {
   git fetch --prune &> /dev/null
   local BRANCH=$(git branch --show-current)
   local DIRTY=$(git status -s | grep -v '^?? ') # ignore untracked files in status
@@ -67,11 +67,19 @@ update_git() {
   fi
 }
 
-attempt_update() {
+alert_success() {
+  echo "✅ default branch updated."
+}
+
+alert_failure() {
+  echo "❌ Something went wrong! Update failed! ❌"
+}
+
+attempt_repo_update() {
   if [[ -d "$1/.git" ]]; then
     (
       cd "$1" && printf "Now updating: $1\n"
-      update_git && echo "✅ default branch updated." || echo "❌ Something went wrong! Update failed! ❌"
+      update_repo && alert_success || alert_failure
     )
   else
     echo "Skipping $1 - not a git repository!"
@@ -79,9 +87,9 @@ attempt_update() {
 }
 
 update_workspace() {
-  attempt_update $1; printf "\n"
+  attempt_repo_update $1; printf "\n"
   for dir in $1/*/; do
-    attempt_update "$dir" && printf "\n"
+    attempt_repo_update "$dir" && printf "\n"
   done
 }
 

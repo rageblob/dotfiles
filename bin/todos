@@ -22,6 +22,7 @@ get_user_response_character() {
 
 # BEGIN
 NOTES_FOLDER="$HOME/Notes"
+mkdir -p "$NOTES_FOLDER"
 FILE=$(select_file "$NOTES_FOLDER")
 FILEPATH="$NOTES_FOLDER/$FILE"
 ARCHIVE="$NOTES_FOLDER/Archive"

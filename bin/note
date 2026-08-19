@@ -2,6 +2,7 @@
 
 # Default notebook directory
 NOTEBOOK="${HOME}/Notes"
+mkdir -p "$NOTEBOOK"
 
 # Prompt user for Heading if not parsed as parameters already
 if [[ $# -gt 0 ]]; then

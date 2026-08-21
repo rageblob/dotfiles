@@ -25,8 +25,9 @@ map("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })
 map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
 
 -- tab and buffer management
-map({"n", "v"}, "<leader>x", "<cmd> close <cr>", { desc = "close active window" })
-map({"n", "v"}, "<leader>X", "<cmd> BufferClose <cr>", { desc = "close active buffer" })
+map({"n", "v"}, "<leader>x", "<cmd> bw <cr>", { desc = "Kill active buffer" })
+map({"n", "v"}, "<leader><Tab>", "<cmd> bNext <cr>", { desc = "Next buffer" } )
+map({"n", "v"}, "<leader><S-Tab>", "<cmd> bprevious <cr>", { desc = "Prevours buffer" } )
 
 -- Movement in Insert mode
 map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })

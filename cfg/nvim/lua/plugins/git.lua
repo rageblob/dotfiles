@@ -8,8 +8,8 @@ plugin({
 })
 
 -- LAZYGIT
-map('n', '<leader>gl', '<cmd>LazyGit<cr>', { desc = "LazyGit" })
-map('n', '<leader>L', '<cmd>LazyGit<cr>', { desc = "LazyGit" })
+map('n', '<leader>gl', '<cmd>LazyGitCurrentFile<cr>', { desc = "LazyGitCurrentFile" })
+map('n', '<leader>L', '<cmd>LazyGitCurrentFile<cr>', { desc = "LazyGitCurrentFile" })
 
 -- GITSIGNS
 require('gitsigns').setup {

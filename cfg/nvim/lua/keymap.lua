@@ -14,6 +14,8 @@ map({ "n", "v" }, "<leader>w", "<cmd> set wrap! <cr>", { desc = "Toggle line wra
 map("n", "<leader>nn", "<cmd> set nu! <CR>", { desc = "toggle line number" })
 map("n", "<leader>nr", "<cmd> set rnu! <CR>", { desc = "toggle relative number" })
 map({ "n", "v" }, "<leader>rr", "<cmd>source $MYVIMRC <cr>", { desc = "Reload init.lua" })
+map({ "n", "v" }, "<leader>ch", "<cmd>checkhealth<cr>", { desc = "Check health" })
+map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "clear search highlighting" })
 
 -- copy and paste
 map({ "n", "v" }, "Y", "\"+y", { desc = "Yank selection to system clipboard" })
@@ -26,7 +28,7 @@ map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
 
 -- tab and buffer management
 map({"n", "v"}, "<leader>x", "<cmd> bw <cr>", { desc = "Kill active buffer" })
-map({"n", "v"}, "<leader><Tab>", "<cmd> bNext <cr>", { desc = "Next buffer" } )
+map({"n", "v"}, "<leader><Tab>", "<cmd> bNext <cr>", { desc = "Next buffer", noremap = true })
 map({"n", "v"}, "<leader><S-Tab>", "<cmd> bprevious <cr>", { desc = "Prevours buffer" } )
 
 -- Movement in Insert mode

@@ -146,8 +146,6 @@ plugin({
   { src = "https://github.com/akinsho/bufferline.nvim" },
 })
 require("bufferline").setup{}
-map({ "n", "v" }, "<Tab>", "<cmd> BufferLineCycleNext <cr>", { desc = "Next Tab" })
-map({ "n", "v" }, "<S-Tab>", "<cmd> BufferLineCyclePrev <cr>", { desc = "Previous Tab" })
 
 -- THEME-HUB : colorscheme picker and manager
 plugin({

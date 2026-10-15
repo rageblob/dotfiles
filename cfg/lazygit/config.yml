@@ -1,0 +1,6 @@
+# reference: https://github.com/jesseduffield/lazygit/blob/master/docs-master/keybindings/Custom_Keybindings.md
+keybinding:
+  universal:
+    # Make ← → move focus between panels
+    prevTab: "<shift+left>"
+    nextTab: "<shift+right>"

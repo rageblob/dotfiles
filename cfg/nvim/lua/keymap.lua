@@ -17,6 +17,10 @@ map({ "n", "v" }, "<leader>rr", "<cmd>source $MYVIMRC <cr>", { desc = "Reload in
 map({ "n", "v" }, "<leader>ch", "<cmd>checkhealth<cr>", { desc = "Check health" })
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "clear search highlighting" })
 
+-- quick terminal access
+map({ "n", "v"}, "<leader>h", "<cmd> vsplit term://zsh <cr>", { desc = "New Terminal (hsplit)" })
+map({ "n", "v"}, "<leader>v", "<cmd> split term://zsh <cr>", { desc = "New Terminal (vsplit)" })
+
 -- copy and paste
 map({ "n", "v" }, "Y", "\"+y", { desc = "Yank selection to system clipboard" })
 map({ "n", "v" }, "D", "\"+d", { desc = "Move selection to system clipboard" })

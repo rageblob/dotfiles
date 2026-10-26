@@ -133,6 +133,15 @@ require("slimline").setup({
   },
 })
 
+plugin({
+  { src = "https://github.com/chentoast/marks.nvim" },
+})
+require'marks'.setup {
+  mappings = {
+    delete_line = "m-",
+  }
+}
+
 -- TAB BAR
 -- plugin({
 --   { src = 'https://github.com/lewis6991/gitsigns.nvim' },

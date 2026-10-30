@@ -1,11 +1,13 @@
 --------------------------------------------------------------------
---  WezTerm init.lua – converted from your Kitty config
+--  WezTerm init.lua
 --------------------------------------------------------------------
 local wezterm = require("wezterm")
 
 --------------------------------------------------------------------
 -- Window size & look & feel
 --------------------------------------------------------------------
+local myfont = wezterm.font_with_fallback({ "JetBrainsMono Nerd Font Mono" })
+
 local config = {
 	-- Initial window size (in characters)
   initial_cols = 80,
@@ -33,7 +35,7 @@ local config = {
 
 	-- Window frame (title bar) colour – kitty’s active_border_color orange
 	window_frame = {
-		font = wezterm.font("JetBrainsMono Nerd Font Mono"),
+		font = myfont,
 		font_size = 14,
 		active_titlebar_bg = "#ff8000", -- orange
 		inactive_titlebar_bg = "#444444", -- a dark grey
@@ -42,7 +44,7 @@ local config = {
 	},
 
 	-- Fonts
-	font = wezterm.font_with_fallback({ "JetBrainsMono Nerd Font Mono" }),
+	font = myfont,
 	font_size = 14.0,
 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" }, -- keeps the font “auto” behaviour
 }
@@ -84,6 +86,8 @@ config.key_tables = {
 	},
 }
 
-config.color_scheme = "One Dark (Gogh)"
+-- COLOR SCHEMES: https://wezterm.org/colorschemes/
+-- config.color_scheme = 'Eldritch' -- downloaded locally in /colors
+config.color_scheme = "Solarized Dark Higher Contrast (Gogh)"
 
 return config

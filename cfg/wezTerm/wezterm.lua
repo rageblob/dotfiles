@@ -4,9 +4,14 @@
 local wezterm = require("wezterm")
 
 --------------------------------------------------------------------
--- Window size & look & feel
+-- Window size, look & feel
 --------------------------------------------------------------------
-local myfont = wezterm.font_with_fallback({ "JetBrainsMono Nerd Font Mono" })
+local myfont = wezterm.font_with_fallback({
+  "0xProto Nerd Font Mono",
+  "JetBrainsMono Nerd Font Mono",
+  "Menlo", "Cascadia Mono" -- MacOS and Windows 11 fallbacks
+})
+local myfontsize = 13.0
 
 local config = {
 	-- Initial window size (in characters)
@@ -23,7 +28,7 @@ local config = {
 	},
 
 	-- Background opacity / blur
-	window_background_opacity = 0.975,
+	window_background_opacity = 0.95,
 	macos_window_background_blur = 20,
 
   -- Hide window decorations but keep window reiszable
@@ -45,7 +50,7 @@ local config = {
 
 	-- Fonts
 	font = myfont,
-	font_size = 14.0,
+	font_size = myfontsize,
 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" }, -- keeps the font “auto” behaviour
 }
 

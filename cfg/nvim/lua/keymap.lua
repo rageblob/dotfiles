@@ -23,7 +23,7 @@ map({ "n", "v"}, "<leader>v", "<cmd> split term://zsh <cr>", { desc = "New Termi
 
 -- copy and paste
 map({ "n", "v" }, "Y", "\"+y", { desc = "Yank selection to system clipboard" })
-map({ "n", "v" }, "D", "\"+d", { desc = "Move selection to system clipboard" })
+map({ "n", "v" }, "D", "\"+d", { desc = "Cut selection to system clipboard" })
 map({ "n", "v" }, "<leader>P", "\"+p", { desc = "Paste from system clipboard" })
 
 -- Comments

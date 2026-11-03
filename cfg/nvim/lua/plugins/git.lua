@@ -8,8 +8,8 @@ plugin({
 })
 
 -- LAZYGIT
-map('n', '<leader>gl', '<cmd>LazyGitCurrentFile<cr>', { desc = "LazyGitCurrentFile" })
-map('n', '<leader>L', '<cmd>LazyGitCurrentFile<cr>', { desc = "LazyGitCurrentFile" })
+map('n', '<leader>gl', '<cmd>LazyGitCurrentFile<cr>', { desc = "LazyGit" })
+map('n', '<leader>L', '<cmd>LazyGitCurrentFile<cr>', { desc = "LazyGit" })
 
 -- GITSIGNS
 require('gitsigns').setup {
@@ -70,8 +70,8 @@ require('gitsigns').setup {
     map('n', '<leader>hq', gitsigns.setqflist)
 
     -- toggles
-    map('n', '<leader>gb', gitsigns.toggle_current_line_blame, { desc = "Git: Toggle line blame" })
-    map('n', '<leader>gw', gitsigns.toggle_word_diff, { desc = "Git: Toggle word diff" })
+    map('n', '<leader>gb', gitsigns.toggle_current_line_blame, { desc = "Toggle line blame" })
+    map('n', '<leader>gw', gitsigns.toggle_word_diff, { desc = "Toggle word diff" })
 
     -- Text object
     map({'o', 'x'}, 'ih', gitsigns.select_hunk)
@@ -84,9 +84,9 @@ require("gitlinker").setup({
     ["gitlab%..*%.sh"] = require("gitlinker.hosts").get_gitlab_type_url,
   },
 })
-map('n', '<leader>gO', function() require('gitlinker').get_buf_range_url('n', { action_callback = require('gitlinker.actions').open_in_browser }) end, { desc = 'Open current line in Browser' })
-map('v', '<leader>gO', function() require('gitlinker').get_buf_range_url('v', { action_callback = require('gitlinker.actions').open_in_browser }) end, { desc = 'Open current line in Browser' })
-map({'n', 'v'}, '<leader>gR', '<cmd>lua require"gitlinker".get_repo_url({action_callback = require"gitlinker.actions".open_in_browser})<cr>', { desc = "Open repo in Browser" })
-
+map('n', '<leader>go', function() require('gitlinker').get_buf_range_url('n', { action_callback = require('gitlinker.actions').open_in_browser }) end, { desc = 'Open current line in Browser' })
+map('v', '<leader>go', function() require('gitlinker').get_buf_range_url('v', { action_callback = require('gitlinker.actions').open_in_browser }) end, { desc = 'Open current line in Browser' })
+map({'n', 'v'}, '<leader>gr', '<cmd>lua require"gitlinker".get_repo_url({action_callback = require"gitlinker.actions".open_in_browser})<cr>', { desc = "Open repo in Browser" })
+map({'n', 'v'}, '<leader>gy', '<cmd>lua require"gitlinker".get_buf_range_url(\'n\')<cr>', { desc = "Copy current line remote URL" })
 -- Additional mappings
 map({"n", "v"}, "<leader>ld", "<cmd>Telescope diagnostics <cr>", { desc = "Show LSP diagnostics" })
